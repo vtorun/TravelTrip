@@ -1,4 +1,4 @@
-﻿
+﻿@model TravelTrip.Models.Siniflar.BlogYorum
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_TravelLayout.cshtml";
@@ -13,7 +13,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Personal Blog a Blogging Category Flat Bootstarp  Responsive Website Template | Single :: w3layouts</title>
     <link href="~/web2/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="~/web2/css/style.css" rel='stylesheet' type='text/css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,22 +23,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!----webfonts---->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
-    <!----//webfonts---->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!--end slider -->
-    <!--script-->
-    <script type="text/javascript" src="~/web2/js/move-top.js"></script>
-    <script type="text/javascript" src="~/web2/js/easing.js"></script>
-    <!--/script-->
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 900);
-            });
-        });
-    </script>
-    <!---->
+
 
 </head>
 <body>
@@ -54,42 +38,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="single">
         <div class="container">
             <div class="col-md-8 single-main">
-                <div class="single-grid">
-                    <img src="~/web2/images/paris.jpg" alt="" />
-                    <br />
-                    <a href="#">Paris'te 1 gece geçirmek</a>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                    </p>
-                </div>
-                <br /><br />
-                <div class="single-grid">
-                    <img src="~/web2/images/londra.jpg" alt="" />
-                    <br />
-                    <a href="#">Londra'da 1 gece geçirmek</a>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                    </p>
-                </div>
-            </div>
 
+                @foreach (var item in Model.blog)
+                {
+                    <div class="single-grid">
+                        <a href="/Blog/BlogDetay/@item.ID">@item.Baslik</a>
+                        <img src="@item.BlogImage" alt="" style="margin-bottom:5px" />
+
+                        <p>
+                            @item.Aciklama
+                        </p>
+                    </div>
+                    <br />
+                    <br />
+                }
+
+            </div>
             <div class="col-md-4 side-content">
                 <div class="recent">
                     <h3>Son Bloglar</h3>
-                    <ul>
-                        <li><a href="#">Aliquam tincidunt mauris</a></li>
-                        <li><a href="#">Vestibulum auctor dapibus  lipsum</a></li>
-                        <li><a href="#">Nunc dignissim risus consecu</a></li>
-                        <li><a href="#">Cras ornare tristiqu</a></li>
-                    </ul>
+
+                    @foreach (var item in Model.sonBloglar)
+                    {
+                        <ul>
+                            <li><a href="/Blog/BlogDetay/@item.ID">@item.Baslik</a></li>
+                        </ul>
+                    }
+
                 </div>
                 <div class="comments">
                     <h3>Son Yorumlar</h3>
-                    <ul>
-                        <li><a href="#">Amada Doe </a> on <a href="#">Hello World!</a></li>
-                        <li><a href="#">Peter Doe </a> on <a href="#"> Photography</a></li>
-                        <li><a href="#">Steve Roberts  </a> on <a href="#">HTML5/CSS3</a></li>
-                    </ul>
+                    @foreach (var item in Model.SonYorumlar)
+                    {
+                        <ul>
+                            <li><a href="/Blog/BlogDetay/@item.BlogID">@item.Yorum.Substring(0, 25)</a></li>
+                        </ul>
+                    }
                 </div>
 
             </div>
@@ -97,7 +81,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
     </div>
 </body>
-<!---->
+</html>
 
 
 
