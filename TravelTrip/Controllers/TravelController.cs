@@ -13,7 +13,7 @@ namespace TravelTrip.Controllers
         Context context = new Context();
         public ActionResult Index()
         {
-            var degerler = context.Blogs.ToList();
+            var degerler = context.Blogs.Take(10).ToList();
             return View(degerler);
         }
         public ActionResult About()
@@ -28,6 +28,16 @@ namespace TravelTrip.Controllers
         public PartialViewResult Partial2()
         {
             var degerler = context.Blogs.Where(x => x.ID == 2).ToList();
+            return PartialView(degerler);
+        }
+        public PartialViewResult PartialTop10()
+        {
+            var degerler = context.Blogs.OrderByDescending(x => x.ID).Take(10).ToList();
+            return PartialView(degerler);
+        }
+        public PartialViewResult PartialBestPlaces()
+        {
+            var degerler = context.Blogs.OrderByDescending(x => x.ID).Take(6).ToList();
             return PartialView(degerler);
         }
     }

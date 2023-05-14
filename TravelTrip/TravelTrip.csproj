@@ -252,6 +252,8 @@
     <Content Include="Views\Blog\BlogDetay.cshtml" />
     <Content Include="Views\Travel\Partial1.cshtml" />
     <Content Include="Views\Travel\Partial2.cshtml" />
+    <Content Include="Views\Travel\PartialTop10.cshtml" />
+    <Content Include="Views\Travel\PartialBestPlaces.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,49 @@
+﻿@using TravelTrip.Models.Siniflar
+@model List<Blog>
+<div class="padding1">
+    <h4>Tavsiye Ettiğim Yerler</h4>
+    <div class="box-left">
+        @{ int i = 0;}
+        @foreach (var item in Model)
+        {
+            if (i < 3)
+            {
+                <div class="bot-img">
+                    <img src="@item.BlogImage" alt="" style="width:120px; height:80px;" />
+                </div>
+                <div class="bot-desc">
+                    <p>@item.Aciklama.Substring(0, 80) </p>
+                </div>
+                <div class="clear"></div>
+                i++;
+            }
+            else
+            {
+
+            }
+
+        }
+    </div>
+    @{ int j = 0;}
+    @foreach (var item in Model)
+    {
+        if (j >= 3)
+        {
+            <div class="box1-left">
+                <div class="bot-img">
+                    <img src="@item.BlogImage" alt="" style="width:120px; height:80px;" />
+                </div>
+                <div class="bot-desc1">
+                    <p>@item.Aciklama.Substring(0, 80) </p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            j++;
+        }
+        else
+        {
+            j++;
+        }
+
+    }
+</div>
