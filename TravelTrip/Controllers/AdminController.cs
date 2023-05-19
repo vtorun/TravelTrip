@@ -11,6 +11,7 @@ namespace TravelTrip.Controllers
     {
         // GET: Admin
         Context context = new Context();
+        [Authorize]
         public ActionResult Index()
         {
             var degerler = context.Blogs.ToList();
@@ -50,6 +51,7 @@ namespace TravelTrip.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public ActionResult YorumListesi()
         {
             var yorumlar = context.Yorumlars.ToList();
@@ -75,6 +77,11 @@ namespace TravelTrip.Controllers
             yorum.Yorum = yorumlar.Yorum;
             context.SaveChanges();
             return RedirectToAction("YorumListesi");
+        }
+        public ActionResult MesajListesi()
+        {
+            var mesajlar = context.Iletisims.ToList();
+            return View(mesajlar);
         }
     }
 }
