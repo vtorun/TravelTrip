@@ -50,5 +50,31 @@ namespace TravelTrip.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult YorumListesi()
+        {
+            var yorumlar = context.Yorumlars.ToList();
+            return View(yorumlar);
+        }
+        public ActionResult YorumSil(int id)
+        {
+            var yorum = context.Yorumlars.Find(id);
+            context.Yorumlars.Remove(yorum);
+            context.SaveChanges();
+            return RedirectToAction("YorumListesi");
+        }
+        public ActionResult YorumGetir(int id)
+        {
+            var yorum = context.Yorumlars.Find(id);
+            return View("YorumGetir", yorum);
+        }
+        public ActionResult YorumGuncelle(Yorumlar yorumlar)
+        {
+            var yorum = context.Yorumlars.Find(yorumlar.ID);
+            yorum.KullaniciAdi = yorumlar.KullaniciAdi;
+            yorum.Maill = yorumlar.Maill;
+            yorum.Yorum = yorumlar.Yorum;
+            context.SaveChanges();
+            return RedirectToAction("YorumListesi");
+        }
     }
 }
